@@ -34,8 +34,8 @@ void findTime(int n,int bt[]){
         total_tat = total_tat + tat[i];  
         printf("   %d ",(i+1)); 
         printf("       %d ", bt[i] ); 
-        printf("       %d",wt[i] ); 
-        printf("       %d\n",tat[i] ); 
+        printf("              %d",wt[i] ); 
+        printf("                     %d\n",tat[i] ); 
 	}
 	int s=(float)total_wt / (float)n; 
     int t=(float)total_tat / (float)n; 
@@ -60,11 +60,11 @@ void printfp(int bt[],int bt1[],int n){
 			}
 		}
 		if(i==0)
-			printf("0-P%d-%d-",a,sum);
+			printf("0-P%d-%d-",a+1,sum);
 		else if(i==n-1)
-			printf("P%d-%d",a,sum);
+			printf("P%d-%d",a+1,sum);
 		else
-			printf("P%d-%d-",a,sum);
+			printf("P%d-%d-",a+1,sum);
 	}
 	printf("\n-----------------------------------------------------\n");
 	
@@ -84,9 +84,10 @@ int main(int argc, char const *argv[])
 		bt1[i]=bt[i];
 	}
     bubbleSort(bt,n);
-    findTime(n,bt);
-    printf("\n");
     printfp(bt,bt1,n);
     printf("\n");
+    findTime(n,bt);
+    printf("\n");
+    
 	return 0;
 }

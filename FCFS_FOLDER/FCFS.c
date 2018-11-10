@@ -54,5 +54,5 @@ int main(int argc, char const *argv[]){
         i++;
     }
 	findTime(i,bt);
-
+	fclose(fp);
 }

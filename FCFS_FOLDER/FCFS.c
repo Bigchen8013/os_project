@@ -34,10 +34,10 @@ void findTime(int n,int bt[]){
 	for(int i=0;i<n;i++){
 		total_wt = total_wt + wt[i];  
         total_tat = total_tat + tat[i];  
-        printf("   %d ",(i+1)); 
-        printf("       %d ", bt[i] ); 
-        printf("              %d",wt[i] ); 
-        printf("                     %d\n",tat[i] ); 
+        printf("%3d",(i+1)); 
+        printf("%13d", bt[i] ); 
+        printf("%13d",wt[i] ); 
+        printf("%19d\n",tat[i] ); 
 	}
 	int s=(float)total_wt / (float)n; 
     int t=(float)total_tat / (float)n; 

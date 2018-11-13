@@ -42,8 +42,8 @@ void waitingTime(struct Process p[],int wt[],int n){
 			c++;
 			flag = false;
 			//得出这个进程的完成时间
-			finish_time = t + 1; 
-  
+			finish_time = t+1; 
+
             // 计算等待时间 
             wt[shortest] = finish_time - 
                         p[shortest].bt - 
@@ -78,6 +78,11 @@ void findTime(struct Process p[],int n){
         printf("%13d", wt[i] ); 
         printf("%13d\n",tat[i] ); 
 	}
+	float s=total_wt / (float)n; 
+    float t=total_tat / (float)n; 
+    printf("Average waiting time = %.2f",s); 
+    printf("\n"); 
+    printf("Average turn around time = %.2f ",t);
 }
 void printGanttChart(){
 	printf("--------------------Gantt chart----------------------\n");

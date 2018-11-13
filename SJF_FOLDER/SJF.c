@@ -37,11 +37,11 @@ void findTime(int n,int bt[]){
         printf("%13d",wt[i] ); 
         printf("%13d\n",tat[i] ); 
 	}
-	int s=(float)total_wt / (float)n; 
-    int t=(float)total_tat / (float)n; 
-    printf("Average waiting time = %d",s); 
+	float s=total_wt / (float)n; 
+    float t=total_tat / (float)n; 
+    printf("Average waiting time = %.2f",s); 
     printf("\n"); 
-    printf("Average turn around time = %d ",t); 
+    printf("Average turn around time = %.2f",t); 
 }
 void printGanttChart(int bt[],int bt1[],int n){
  printf("--------------------Gantt chart----------------------\n");

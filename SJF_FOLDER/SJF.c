@@ -43,7 +43,7 @@ void findTime(int n,int bt[]){
     printf("\n"); 
     printf("Average turn around time = %d ",t); 
 }
-void printfp(int bt[],int bt1[],int n){
+void printGanttChart(int bt[],int bt1[],int n){
  printf("--------------------Gantt chart----------------------\n");
  printf("         ");
  int sum=0;
@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
 		bt1[i]=bt[i];
 	}
     bubbleSort(bt,n);
-    printfp(bt,bt1,n);
+    printGanttChart(bt,bt1,n);
     printf("\n");
     findTime(n,bt);
     printf("\n");

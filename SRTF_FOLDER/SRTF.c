@@ -9,7 +9,7 @@ struct Process{
 void waitingTime(struct Process p[],int wt[],int n){
 	int bt2[n];
 	int c = 0, t = 0, min = 10000;
-	int shortest = 0, finish_time;
+	int index = 0, finish_time;
 	int flag = false;
 
 	for(int i=0;i<n;i++){
@@ -22,35 +22,37 @@ void waitingTime(struct Process p[],int wt[],int n){
 				(bt2[j]<min) && 
 				(bt2[j]>0)){
 				min = bt2[j];
-				shortest = j;
+				index = j;
 				flag = true;
 			}
 		}
+		
 		if(flag == false){
 			t++;
 			continue;
 		}
-		bt2[shortest]--;//减少某个进程的剩余时间
+		bt2[index]--;//减少某个进程的剩余时间
 
-		min = bt2[shortest];//更新最短剩余时间
+		min = bt2[index];//更新最短剩余时间
 
 		if(min == 0){
 			min = 10000;
 		}
 
-		if(bt2[shortest] == 0){//如果某个进程跑完了
+		if(bt2[index] == 0){//如果某个进程跑完了
 			c++;
+
 			flag = false;
 			//得出这个进程的完成时间
 			finish_time = t+1; 
 
             // 计算等待时间 
-            wt[shortest] = finish_time - 
-                        p[shortest].bt - 
-                        p[shortest].arr; 
+            wt[index] = finish_time - 
+                        p[index].bt - 
+                        p[index].arr; 
   
-            if (wt[shortest] < 0){ 
-                wt[shortest] = 0;
+            if (wt[index] < 0){ 
+                wt[index] = 0;
             }
 		}
 
@@ -64,7 +66,6 @@ void turnAroundTime(struct Process p[],int wt[],int tat[],int n){
 }
 void findTime(struct Process p[],int n){
 	int wt[n],tat[n],total_wt = 0, total_tat = 0;
-
 	waitingTime(p,wt,n);
 	turnAroundTime(p,wt,tat,n);
 	printf("Processes   Burst time   Arrival time   Waiting time   Turn around time\n");
@@ -84,12 +85,6 @@ void findTime(struct Process p[],int n){
     printf("\n"); 
     printf("Average turn around time = %.2f ",t);
 }
-void printGanttChart(){
-	printf("--------------------Gantt chart----------------------\n");
- 
-	printf("\n-----------------------------------------------------\n");
-	
-}
 int main(int argc, char const *argv[])
 {
 	FILE *fp=NULL;
@@ -101,9 +96,7 @@ int main(int argc, char const *argv[])
 		i++;
 	}
 	fclose(fp);
-
 	n = i;
-    //printGanttChart();
     printf("\n");
     findTime(p,n);
     printf("\n");

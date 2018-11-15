@@ -1,4 +1,9 @@
 #include <stdio.h>
+struct Process{
+	int pid;
+	int bt;
+	int arr;
+};
 void bubbleSort(int bt[],int n)
 {
   	for(int i=0;i<n;i++)
@@ -23,16 +28,16 @@ void turnAroundTime(int n, int bt[], int wt[], int tat[]){
 		tat[i] = bt[i] + wt[i];
 	}
 }
-void findTime(int n,int bt[]){
+void findTime(int n,int bt[],struct Process p[]){
 	int wt[n],tat[n],total_wt=0,total_tat=0;
 	waitingTime(n,bt,wt);
 	turnAroundTime(n,bt,wt,tat);
-	printf("Processes   Burst time   Waiting time   Turn around time\n");
-
+	printf("Processes   Arrive time   Burst time   Waiting time   Turn around time\n");
 	for(int i=0;i<n;i++){
 		total_wt = total_wt + wt[i];  
         total_tat = total_tat + tat[i];  
         printf("%3d ",(i+1)); 
+        printf("%13d",p[i].arr);
         printf("%13d ", bt[i] ); 
         printf("%13d",wt[i] ); 
         printf("%13d\n",tat[i] ); 
@@ -74,10 +79,14 @@ int main(int argc, char const *argv[])
 	FILE *fp=NULL;
 	fp=fopen("input.txt","r");
 	int bt[50];
+	struct Process p[50];
 	int m=0;
-	while(fscanf(fp,"%d",&bt[m++])!=EOF);
+	while(fscanf(fp,"%d %d %d",&p[m].pid,&p[m].arr,&p[m].bt)!=EOF){
+	bt[m]=p[m].bt;
+	m++; 
+	} 
 	fclose(fp);
-	int n=m-1;
+	int n=m;
 	int bt1[50];
 	for(int i=0;i<n;i++)
 	{
@@ -86,7 +95,7 @@ int main(int argc, char const *argv[])
     bubbleSort(bt,n);
     printGanttChart(bt,bt1,n);
     printf("\n");
-    findTime(n,bt);
+    findTime(n,bt,p);
     printf("\n");
     
 	return 0;

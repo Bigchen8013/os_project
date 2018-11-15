@@ -17,7 +17,7 @@ int a=0,b=0,sumT=0;
 int RR(int n)
 {
 	FILE *fp=NULL;
-	fp=fopen("test.txt","r");
+	fp=fopen("input.txt","r");
 	
 	int i,j;
 	for(i=1;i<=n;i++)      //收集进程信息 

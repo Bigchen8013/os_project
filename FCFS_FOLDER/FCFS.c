@@ -1,4 +1,9 @@
 #include <stdio.h>
+struct Process{
+	int pid;
+	int bt;
+	int arr;
+};
 void waitingTime(int n, int bt[], int wt[]){
 	wt[0] = 0;
 
@@ -29,18 +34,24 @@ void printGanttChart(int bt[],int n){
 	}
 	printf("\n-----------------------------------------------------\n");
 }
+<<<<<<< HEAD
 void findTime(int n,int bt[]){
 	int wt[n],tat[n],wtat[n],total_wt=0,total_tat=0,total_wtat=0;
+=======
+void findTime(int n,int bt[],struct Process p[]){
+	int wt[n],tat[n],total_wt=0,total_tat=0;
+>>>>>>> 64f744373837bcaca248849d664b11b31232c404
 	waitingTime(n,bt,wt);
 	turnAroundTime(n,bt,wt,tat,wtat);
 	printGanttChart(bt,n);
-	printf("Processes   Burst time   Waiting time   Turn around time\n");
+	printf("Processes   Arrive time   Burst time   Waiting time   Turn around time\n");
 	for(int i=0;i<n;i++){
 		total_wt = total_wt + wt[i];  
         total_tat = total_tat + tat[i];  
         total_wtat = total_wtat + wtat[i];
         printf("%3d",(i+1)); 
-        printf("%13d", bt[i] ); 
+        printf("%13d",p[i].arr);
+        printf("%14d", bt[i] ); 
         printf("%13d",wt[i] ); 
         printf("%19d\n",tat[i] ); 
 	}
@@ -57,10 +68,12 @@ int main(int argc, char const *argv[]){
 	int i=0;
     FILE *fp=NULL;
     fp=fopen("input.txt","r");
+    struct Process p[50];
 	int bt[50] ;  
-    while(fscanf(fp,"%d",&bt[i])!=EOF){
-        i++;
+    while(fscanf(fp,"%d %d %d",&p[i].pid,&p[i].arr,&p[i].bt)!=EOF){
+        bt[i]=p[i].bt;
+		i++;
     }
-	findTime(i,bt);
+	findTime(i,bt,p);
 	fclose(fp);
 }

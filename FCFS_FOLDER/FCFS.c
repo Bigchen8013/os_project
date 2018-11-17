@@ -34,13 +34,8 @@ void printGanttChart(int bt[],int n){
 	}
 	printf("\n-----------------------------------------------------\n");
 }
-<<<<<<< HEAD
-void findTime(int n,int bt[]){
-	int wt[n],tat[n],wtat[n],total_wt=0,total_tat=0,total_wtat=0;
-=======
 void findTime(int n,int bt[],struct Process p[]){
-	int wt[n],tat[n],total_wt=0,total_tat=0;
->>>>>>> 64f744373837bcaca248849d664b11b31232c404
+	int wt[n],tat[n],wtat[n],total_wt=0,total_tat=0,total_wtat=0;
 	waitingTime(n,bt,wt);
 	turnAroundTime(n,bt,wt,tat,wtat);
 	printGanttChart(bt,n);

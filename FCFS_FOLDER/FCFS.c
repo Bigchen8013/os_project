@@ -11,13 +11,13 @@ void waitingTime(int n, int bt[], int wt[]){
 		wt[i] = bt[i-1] + wt[i-1];
 	}
 }
-void turnAroundTime(int n, int bt[], int wt[], int tat[],int wtat[]){
+void turnAroundTime(int n, int bt[], int wt[], int tat[],float wtat[]){
 	for(int i=0;i<n;i++){
 		tat[i] = bt[i] + wt[i];
 	}
 
 	for(int i=0;i<n;i++){
-		wtat[i] = tat[i]/bt[i];
+		wtat[i] = tat[i]/(float)bt[i];
 	}
 }
 void printGanttChart(int bt[],int n){
@@ -35,7 +35,8 @@ void printGanttChart(int bt[],int n){
 	printf("\n-----------------------------------------------------\n");
 }
 void findTime(int n,int bt[],struct Process p[]){
-	int wt[n],tat[n],wtat[n],total_wt=0,total_tat=0,total_wtat=0;
+	int wt[n],tat[n],total_wt=0,total_tat=0;
+	float wtat[n],total_wtat=0;
 	waitingTime(n,bt,wt);
 	turnAroundTime(n,bt,wt,tat,wtat);
 	printGanttChart(bt,n);

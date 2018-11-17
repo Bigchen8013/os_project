@@ -101,17 +101,19 @@ while(sum<n){
 }
 printf("-------------------------------------------------------------------------\n");
 fclose(fp);
+return 0;
 }
  
 void zt_and_wt(int n)
 {
-	float average_zt,average_wt;
-	int zt=0,wt=0;
+	float average_zt,average_wt,average_wtat;
+	int zt=0,wt=0,wtat=0;
 	printf("-------------------------------------------------------------------------\n");
 	printf("Processes   Burst time   Arrival time   Waiting time   Turn around time\n");
 	for(int i=1;i<=n;i++){
 		zt+=process[i].zz;
 		wt+=process[i].wt;
+		wtat+=process[i].zz/process[i].st;
 		sumT+=process[i].st;
 		printf("%5d",i); 
         printf("%13d", process[i].st); 
@@ -121,9 +123,10 @@ void zt_and_wt(int n)
 	}
 	average_zt=zt*1.0/n;
 	average_wt=wt*1.0/n;
-	printf("-------------------------------------------------------------------------\n");
+	average_wtat=wtat*1.0/n;
 	printf("Average waiting time = %.2f\n",average_wt); 
     printf("Average turn around time = %.2f\n",average_zt);
+    printf("Average weighted turn around time = %.2f\n",average_wtat );
     printf("-------------------------------------------------------------------------\n");
 }
 int main()
@@ -149,6 +152,6 @@ int main()
 		}
 		
 	}
-		printf("\n-------------------------------------------------------------------------\n");
+	printf("\n-------------------------------------------------------------------------\n");
 	return 0;
 }

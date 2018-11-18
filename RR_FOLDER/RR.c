@@ -2,9 +2,9 @@
 #define N 50
 struct PCB
 {
-	int pn;   //process name进程名字
-	int at;   //arrival time到达时间
-	int st;   //service time服务时间
+	int pn;   //进程名字
+	int at;   //到达时间
+	int st;   //服务时间
 	int ct;   //完成时刻
 	int sc;  //标志是否完成
 	int st1;  //剩余服务时间  
@@ -129,14 +129,7 @@ void zt_and_wt(int n)
     printf("Average weighted turn around time = %.2f\n",average_wtat );
     printf("-------------------------------------------------------------------------\n");
 }
-int main()
-{
-	int n;
-	printf("\t\t时间片轮转调度算法\n");
-	printf("请输入总进程数：\n");
-	scanf("%d",&n);
-	RR(n);
-	zt_and_wt(n);
+void printGanttChart(){
 	printf("------------------------Gantt chart--------------------------------------\n");
 	for(int i=0;i<=b;i++)
 	{
@@ -153,5 +146,15 @@ int main()
 		
 	}
 	printf("\n-------------------------------------------------------------------------\n");
+}
+int main()
+{
+	int n;
+	printf("\t\t时间片轮转调度算法\n");
+	printf("请输入总进程数：\n");
+	scanf("%d",&n);
+	RR(n);
+	zt_and_wt(n);
+	printGanttChart();
 	return 0;
 }

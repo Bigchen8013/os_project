@@ -17,7 +17,7 @@ void turnAroundTime(int n, int bt[], int wt[], int tat[],float wtat[]){
 	}
 
 	for(int i=0;i<n;i++){
-		wtat[i] = tat[i]/(float)bt[i];
+			wtat[i] = tat[i]/(float)bt[i];
 	}
 }
 void printGanttChart(int bt[],int n){
@@ -26,11 +26,11 @@ void printGanttChart(int bt[],int n){
 	for(int i=0;i<n;i++){
 	sum+=bt[i];
 	if(i==0)
-	printf("0-P%d-%d-",i,sum);
+	printf("0-P%d-%d-",i+1,sum);
 	else if(i==n-1)
-	printf("P%d-%d",i,sum);
+	printf("P%d-%d",i+1,sum);
 	else
-	printf("P%d-%d-",i,sum);
+	printf("P%d-%d-",i+1,sum);
 	}
 	printf("\n-----------------------------------------------------\n");
 }
@@ -40,7 +40,7 @@ void findTime(int n,int bt[],struct Process p[]){
 	waitingTime(n,bt,wt);
 	turnAroundTime(n,bt,wt,tat,wtat);
 	printGanttChart(bt,n);
-	printf("Processes   Arrive time   Burst time   Waiting time   Turn around time\n");
+	printf("Processes   Arrival time   Burst time   Waiting time   Turn around time\n");
 	for(int i=0;i<n;i++){
 		total_wt = total_wt + wt[i];  
         total_tat = total_tat + tat[i];  
@@ -59,6 +59,7 @@ void findTime(int n,int bt[],struct Process p[]){
     printf("Average turn around time = %.2f",t);
     printf("\n"); 
     printf("Average weighted turn around time = %.2f",t2);
+    printf("\n"); 
 }
 int main(int argc, char const *argv[]){
 	int i=0;

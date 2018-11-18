@@ -117,11 +117,10 @@ int main(int argc, char const *argv[])
 	while(fscanf(fp,"%d %d %d",&p[i].pid,&p[i].bt,&p[i].arr)!=EOF){
 		i++;
 	}
-	fclose(fp);
 	n = i;
     printf("\n");
     findTime(p,n);
     printf("\n");
-    
+    fclose(fp);
 	return 0;
 }

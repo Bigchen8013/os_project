@@ -11,8 +11,8 @@ void waitingTime(int n,int wt[],struct Process pro[]){
 	int tmp;
 	for(int i=1;i<=n;i++){
 		for(int j=0;j<n;j++){
-			if(pro[j].p==i){
-				if(count==0){
+			if(pro[j].p==i){//分别找出对应1，2，3...优先级的进程
+				if(count==0){//令这个优先级最高的等待时间为0	
 					wt[j] = 0;
 					tmp = j;//保存上一个优先级进程的ID
 					count++;
@@ -28,7 +28,7 @@ void waitingTime(int n,int wt[],struct Process pro[]){
 void turnAroundTime(int n,int wt[], int tat[],float wtat[],struct Process pro[]){
 	for(int i=1;i<=n;i++){
 		for(int j=0;j<n;j++){
-			if(pro[j].p==i){
+			if(pro[j].p==i){//分别找出对应1，2，3...优先级的进程
 				tat[j] = pro[j].bt+wt[j];
 				wtat[j] = tat[j]/(float)pro[j].bt;
 			}
@@ -40,7 +40,7 @@ void printGanttChart(int n,int wt[],struct Process pro[]){
 	printf("--------------------Gantt chart----------------------\n");
 	for(int i=1;i<=n;i++){
 		for(int j=0;j<n;j++){
-			if(pro[j].p==i){
+			if(pro[j].p==i){//分别找出对应1，2，3...优先级的进程
 			if(i==1){
 				printf("0-");
 				printf("P%d-%d-",j+1,wt[j]+pro[j].bt);
@@ -94,7 +94,7 @@ int main(int argc, char const *argv[]){
 	struct Process pro[50];
     fp=fopen("input.txt","r");
     while(fscanf(fp,"%d %d %d",&pro[i].bt,&pro[i].p,&pro[i].arr)!=EOF){
-// id 优先级 到达时间
+// 区间时间 优先级 到达时间
         i++;
     }
 	findTime(i,pro);

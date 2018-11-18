@@ -11,7 +11,7 @@ void waitingTime(struct Process p[],int wt[],int n){
 	int c = 0, t = 0, min = 10000;
 	int index = 0, finish_time;
 	int flag = false;
-
+	int lastIndex=-1;//存储上一个进程
 	for(int i=0;i<n;i++){
 		bt2[i] = p[i].bt;
 	}
@@ -24,6 +24,7 @@ void waitingTime(struct Process p[],int wt[],int n){
 				min = bt2[j];
 				index = j;
 				flag = true;
+
 			}
 		}
 		
@@ -31,6 +32,16 @@ void waitingTime(struct Process p[],int wt[],int n){
 			t++;
 			continue;
 		}
+		if(lastIndex!=index){
+			if(lastIndex==-1){
+				printf("--------------------Gantt chart----------------------\n");
+				printf("0-P%d",index+1);
+			}
+			else{
+				printf("-%d-P%d",t,index+1);
+			}	
+				lastIndex = index;
+			}
 		bt2[index]--;//减少某个进程的剩余时间
 
 		min = bt2[index];//更新最短剩余时间
@@ -43,10 +54,14 @@ void waitingTime(struct Process p[],int wt[],int n){
 			c++;
 
 			flag = false;
+			if(c==n){
+				printf("-%d",t+1);
+			}
+			//甘特图最后项
 			//得出这个进程的完成时间
 			finish_time = t+1; 
-
-            // 计算等待时间 
+			 // 计算等待时间 
+           
             wt[index] = finish_time - 
                         p[index].bt - 
                         p[index].arr; 
@@ -70,6 +85,7 @@ void findTime(struct Process p[],int n){
 	float wtat[n],total_wtat=0;
 	waitingTime(p,wt,n);
 	turnAroundTime(p,wt,tat,n,wtat);
+	printf("\n-----------------------------------------------------\n");
 	printf("Processes   Burst time   Arrival time   Waiting time   Turn around time\n");
 
 	for(int i=0;i<n;i++){
